@@ -1083,6 +1083,19 @@ struct CreateItemAction final : EditorAction
 
     int       m_LastChannel = -1;
 
+    // Used to draw last dragged link when it's dropped to open popup
+    PinKind   m_lastStartPinKind;
+    ImRect    m_lastStartPivot;
+    ImVec2    m_lastStartDir;
+    float     m_lastStartPinCorners;
+    float     m_lastStartPinStrength;
+
+    PinKind   m_lastEndPinKind;
+    ImRect    m_lastEndPivot;
+    ImVec2    m_lastEndDir;
+    float     m_lastEndPinCorners;
+    float     m_lastEndPinStrength;
+    //--------------------------------
 
     CreateItemAction(EditorContext* editor);
 
@@ -1109,6 +1122,8 @@ struct CreateItemAction final : EditorAction
 
     Result QueryLink(PinId* startId, PinId* endId);
     Result QueryNode(PinId* pinId);
+
+    void DrawLastLink();
 
 private:
     bool m_IsInGlobalSpace;
@@ -1468,6 +1483,10 @@ struct EditorContext
     }
 
     ImDrawList* GetDrawList() { return m_DrawList; }
+
+    /// Draw link for the last drag action, used to draw link when
+    /// "Create New Node" popup is active after dropping link drag.
+    void DrawLastLink();
 
 private:
     void LoadSettings();

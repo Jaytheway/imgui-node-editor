@@ -760,3 +760,8 @@ int ax::NodeEditor::GetOrderedNodeIds(NodeId* nodes, int size)
 {
     return s_Editor->GetNodeIds(nodes, size);
 }
+
+void ax::NodeEditor::DrawLastLink()
+{
+    return s_Editor->DrawLastLink();
+}
