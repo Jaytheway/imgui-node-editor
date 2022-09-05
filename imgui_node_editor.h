@@ -202,6 +202,7 @@ struct Style
     float   PinArrowWidth;
     float   GroupRounding;
     float   GroupBorderWidth;
+    float   GridSnap;
     float   HighlightConnectedLinks;
     float   SnapLinkToPinDir; // when true link will start on the line defined by pin direction
     ImVec4  Colors[StyleColor_Count];
@@ -235,6 +236,7 @@ struct Style
         PinArrowWidth           = 0.0f;
         GroupRounding           = 6.0f;
         GroupBorderWidth        = 1.0f;
+        GridSnap                = 16.0f;
         HighlightConnectedLinks = 0.0f;
         SnapLinkToPinDir        = 0.0f;
 
