@@ -1467,33 +1467,34 @@ void ed::EditorContext::End()
 
     // Draw grid
 # if 1 // #FIXME
-    {
-        //auto& style = ImGui::GetStyle();
+	{
+		//auto& style = ImGui::GetStyle();
 
-        m_DrawList->ChannelsSetCurrent(c_UserChannel_Grid);
+		m_DrawList->ChannelsSetCurrent(c_UserChannel_Grid);
 
-        ImVec2 offset = m_Canvas.ViewOrigin() * (1.0f / m_Canvas.ViewScale());
-        ImU32 GRID_COLOR = GetColor(StyleColor_Grid, 0.8f);// ImClamp(m_Canvas.ViewScale() * m_Canvas.ViewScale(), 0.0f, 1.0f));
-        ImU32 GRID_COLOR2 = GetColor(StyleColor_Grid, 1.0f);// ImClamp(m_Canvas.ViewScale() * m_Canvas.ViewScale() + 0.2f, 0.0f, 1.0f));
+		ImVec2 offset = m_Canvas.ViewOrigin() * (1.0f / m_Canvas.ViewScale());
+		ImU32 GRID_COLOR = GetColor(StyleColor_Grid, 0.8f);// ImClamp(m_Canvas.ViewScale() * m_Canvas.ViewScale(), 0.0f, 1.0f));
+		ImU32 GRID_COLOR2 = GetColor(StyleColor_Grid, 1.0f);// ImClamp(m_Canvas.ViewScale() * m_Canvas.ViewScale() + 0.2f, 0.0f, 1.0f));
 
-        const float gridSize = 24.0f;// 32.0f;
-        const float GRID_ZOOM_FACTOR = std::ceilf(1.0f / (m_Canvas.ViewScale() * 1.0f));
-        float GRID_SX = gridSize * GRID_ZOOM_FACTOR;
-        float GRID_SY = gridSize * GRID_ZOOM_FACTOR;
-        ImVec2 VIEW_POS = m_Canvas.ViewRect().Min;
-        ImVec2 VIEW_SIZE = m_Canvas.ViewRect().GetSize();
+		const float gridSize = 24.0f;// 32.0f;
+		const float GRID_ZOOM_FACTOR = std::ceilf(1.0f / (m_Canvas.ViewScale() * 1.0f));
+		float GRID_SX = gridSize * GRID_ZOOM_FACTOR;
+		float GRID_SY = gridSize * GRID_ZOOM_FACTOR;
+		ImVec2 VIEW_POS = m_Canvas.ViewRect().Min;
+		ImVec2 VIEW_SIZE = m_Canvas.ViewRect().GetSize();
 
-        m_DrawList->AddRectFilled(VIEW_POS, VIEW_POS + VIEW_SIZE, GetColor(StyleColor_Bg));
+		m_DrawList->AddRectFilled(VIEW_POS, VIEW_POS + VIEW_SIZE, GetColor(StyleColor_Bg));
 
-        for (float x = fmodf(offset.x, GRID_SX); x < VIEW_SIZE.x; x += GRID_SX)
-            m_DrawList->AddLine(ImVec2(x, 0.0f) + VIEW_POS, ImVec2(x, VIEW_SIZE.y) + VIEW_POS, GRID_COLOR);
-        for (float y = fmodf(offset.y, GRID_SY); y < VIEW_SIZE.y; y += GRID_SY)
-            m_DrawList->AddLine(ImVec2(0.0f, y) + VIEW_POS, ImVec2(VIEW_SIZE.x, y) + VIEW_POS, GRID_COLOR);
+		for (float x = fmodf(offset.x, GRID_SX); x < VIEW_SIZE.x; x += GRID_SX)
+			m_DrawList->AddLine(ImVec2(x, 0.0f) + VIEW_POS, ImVec2(x, VIEW_SIZE.y) + VIEW_POS, GRID_COLOR);
+		for (float y = fmodf(offset.y, GRID_SY); y < VIEW_SIZE.y; y += GRID_SY)
+			m_DrawList->AddLine(ImVec2(0.0f, y) + VIEW_POS, ImVec2(VIEW_SIZE.x, y) + VIEW_POS, GRID_COLOR);
 
-        for (float x = fmodf(offset.x, GRID_SX * 4.0f); x < VIEW_SIZE.x; x += GRID_SX * 4.0f)
-            m_DrawList->AddLine(ImVec2(x, 0.0f) + VIEW_POS, ImVec2(x, VIEW_SIZE.y) + VIEW_POS, GRID_COLOR2);
-        for (float y = fmodf(offset.y, GRID_SY * 4.0f); y < VIEW_SIZE.y; y += GRID_SY * 4.0f)
-            m_DrawList->AddLine(ImVec2(0.0f, y) + VIEW_POS, ImVec2(VIEW_SIZE.x, y) + VIEW_POS, GRID_COLOR2);
+		for (float x = fmodf(offset.x, GRID_SX * 4.0f); x < VIEW_SIZE.x; x += GRID_SX * 4.0f)
+			m_DrawList->AddLine(ImVec2(x, 0.0f) + VIEW_POS, ImVec2(x, VIEW_SIZE.y) + VIEW_POS, GRID_COLOR2);
+		for (float y = fmodf(offset.y, GRID_SY * 4.0f); y < VIEW_SIZE.y; y += GRID_SY * 4.0f)
+			m_DrawList->AddLine(ImVec2(0.0f, y) + VIEW_POS, ImVec2(VIEW_SIZE.x, y) + VIEW_POS, GRID_COLOR2);
+	}
 # endif
 
 # if 0
@@ -3286,7 +3287,7 @@ void ed::FlowAnimationController::Release(FlowAnimation* animation)
 //------------------------------------------------------------------------------
 const float ed::NavigateAction::s_DefaultZoomLevels[] =
 {
-    0.1f, 0.15f, 0.20f, 0.25f, 0.33f, 0.5f, 0.75f, 1.0f/*, 1.25f, 1.50f, 2.0f, 2.5f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f*/ // JP. Limited max zoom in to 1:1
+	0.1f, 0.15f, 0.20f, 0.25f, 0.33f, 0.5f, 0.75f, 1.0f, 1.25f, 1.50f, 2.0f, 2.5f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f
 };
 
 const int ed::NavigateAction::s_DefaultZoomLevelCount = sizeof(s_DefaultZoomLevels) / sizeof(*s_DefaultZoomLevels);
