@@ -413,7 +413,9 @@ ImVec2 CanvasToScreen(const ImVec2& pos);
 int GetNodeCount();                                // Returns number of submitted nodes since Begin() call
 int GetOrderedNodeIds(NodeId* nodes, int size);    // Fills an array with node id's in order they're drawn; up to 'size` elements are set. Returns actual size of filled id's.
 
-
+/// Draw link for the last drag action, used to draw link when
+/// "Create New Node" popup is active after dropping link drag.
+void DrawLastLink();
 
 
 
