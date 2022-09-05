@@ -1469,14 +1469,15 @@ void ed::EditorContext::End()
 
         m_DrawList->ChannelsSetCurrent(c_UserChannel_Grid);
 
-        ImVec2 offset    = m_Canvas.ViewOrigin() * (1.0f / m_Canvas.ViewScale());
+        ImVec2 offset = m_Canvas.ViewOrigin() * (1.0f / m_Canvas.ViewScale());
         ImU32 GRID_COLOR = GetColor(StyleColor_Grid, 0.8f);// ImClamp(m_Canvas.ViewScale() * m_Canvas.ViewScale(), 0.0f, 1.0f));
         ImU32 GRID_COLOR2 = GetColor(StyleColor_Grid, 1.0f);// ImClamp(m_Canvas.ViewScale() * m_Canvas.ViewScale() + 0.2f, 0.0f, 1.0f));
 
+        const float gridSize = 24.0f;// 32.0f;
         const float GRID_ZOOM_FACTOR = std::ceilf(1.0f / (m_Canvas.ViewScale() * 1.0f));
-        float GRID_SX    = 32.0f * GRID_ZOOM_FACTOR;
-        float GRID_SY    = 32.0f * GRID_ZOOM_FACTOR;
-        ImVec2 VIEW_POS  = m_Canvas.ViewRect().Min;
+        float GRID_SX = gridSize * GRID_ZOOM_FACTOR;
+        float GRID_SY = gridSize * GRID_ZOOM_FACTOR;
+        ImVec2 VIEW_POS = m_Canvas.ViewRect().Min;
         ImVec2 VIEW_SIZE = m_Canvas.ViewRect().GetSize();
 
         m_DrawList->AddRectFilled(VIEW_POS, VIEW_POS + VIEW_SIZE, GetColor(StyleColor_Bg));
