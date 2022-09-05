@@ -1124,8 +1124,11 @@ void ed::EditorContext::Begin(const char* id, const ImVec2& size)
     if (!m_IsInitialized)
     {
         // Cycle canvas so it has a change to setup its size before settings are loaded
+        //! We don't want to actually draw Canvas now because it's going to be positioned
+        //! incorrectly untill we LoadSettings, so we just clip it out.
+        ImGui::PushClipRect(ImGui::GetCursorScreenPos() - ImVec2(2.0f, 2.0f), ImGui::GetCursorScreenPos() - ImVec2(1.0f, 1.0f), false);
         m_Canvas.Begin(id, canvasSize);
-        m_Canvas.End();
+        ImGui::PopClipRect();
 
         LoadSettings();
         m_IsInitialized = true;
